@@ -8,7 +8,7 @@ EXE := $(BIN_DIR)/main
 SRC := $(wildcard $(SRC_DIR)/*.cpp) # gets a list of all cpp files in the SRC directory
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) # or with pathsubst OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
-CPPFLAGS := -Iinclude -MMD -MP 
+CPPFLAGS := -Iinclude -MMD -MP -DDEBUG
 # The -MMD -MP flags are used to generate the header dependencies automatically. We will use this later on to trigger a compilation when only a header changes.
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
