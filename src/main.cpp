@@ -3,7 +3,7 @@
 int main(int argc, char** argv){
     if (argc != 2){
         printf("Game file missing...");
-        return 0;
+        return 1;
     }
     const char* path_game = argv[1];
 
@@ -17,7 +17,19 @@ int main(int argc, char** argv){
 
     new_game.print_missing_numbers();
 
-    new_game.get_possible_numbers(0, 0);
+    bool is_solved = new_game.solve();
 
-    return 1;
+    if (is_solved){
+        printf("\n+++++\nSOLUTION FOUND:\n");
+        new_game.print_state();
+        printf("Solver took %u steps\n", new_game.get_count_solver_steps());
+    } else {
+        printf("\n-----\nNO SOLUTION FOUND:\n");
+        new_game.print_state();
+        printf("Solver took %u steps\n", new_game.get_count_solver_steps());
+    }
+
+    
+
+    return 0;
 }
