@@ -12,7 +12,7 @@ CPPFLAGS := -Iinclude -MMD -MP -DDEBUG
 # The -MMD -MP flags are used to generate the header dependencies automatically. We will use this later on to trigger a compilation when only a header changes.
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
-LDLIBS   := -lm
+# LDLIBS   := -lm
 
 .PHONY: all clean
 
@@ -20,7 +20,7 @@ all: $(EXE)
 
 $(EXE): $(OBJ) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $(CPPFLAGS) $^ $(LDLIBS) -o $@
-
+	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
